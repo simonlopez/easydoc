@@ -50,14 +50,34 @@ describe('server tests', function(){
       });
     });
 
+    it('should return file', function(done){
+      // when requesting the url
+      request.get(url+'/_assets/static.txt', function(err, resp, body) {
+        expect(err).to.not.exist;
+        expect(resp.statusCode).to.equal(200);
+        expect(body).to.equal("STATIC\n");
+        done();
+      });
+    });
+
+    it('should return env file', function(done){
+      // when requesting the url
+      request.get(url+'/_assets/static2.txt', function(err, resp, body) {
+        expect(err).to.not.exist;
+        expect(resp.statusCode).to.equal(200);
+        expect(body).to.equal("DEV\n");
+        done();
+      });
+    });
+
     it('should search return results', function(done){
       // when requesting the url
       request.post(url+'/search', {form:{searched:'test'}}, function(err, resp, body) {
         expect(err).to.not.exist;
         expect(resp.statusCode).to.equal(200);
         expect(body).to.not.include('No results found');
-        expect(body).to.include('With another testing case');
-        expect(body).to.include('# simple test');
+        expect(body).to.include('&lt;b&gt;test&lt;/b&gt;');
+        expect(body).to.include('# simple &lt;b&gt;test&lt;');
         done();
       });
     });

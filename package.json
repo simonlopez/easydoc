@@ -17,6 +17,12 @@
     "url": "https://github.com/feugy/easydoc"
   },
   "license": "MIT",
+  "contributors": [
+    {
+      "name": "Simon Lopez",
+      "email": "simon.lopez@slopez.org"
+    }
+  ],
   "bin": {
     "easydoc": "./bin/easydoc"
   },
